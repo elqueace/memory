@@ -1,7 +1,6 @@
 <script src="js/congatulations.js"></script>
 
 <div class="congrats">
-<div id="container" class="col congrats-container p1"></div>
   <div class="congrats-box m2 d2">
     <div class="cracker solid a1">    </div>
     <div class="cracker dotted a2"> </div>
@@ -173,3 +172,12 @@
 </div>
     </div>
 <h1 class="congrats-title">Congratulations !!!</h1>
+
+<script>
+  let container = document.createElement('div');
+  container.setAttribute('id', 'container');
+  container.setAttribute('class', 'col congrats-container p1');
+
+  let congrats = document.getElementsByClassName('congrats');
+  congrats.appendChild(container);
+</script>
