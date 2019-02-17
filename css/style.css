@@ -57,3 +57,15 @@ body {
 .match .front {
   display:none;
 }
+.player-title {
+
+color: #f76524;
+text-align: center;
+font-size: 5rem;
+font-style: italic;
+text-shadow: #ffe45e 0 0 30px, #e5c654 1px 0 10px;
+}
+
+.hidden{
+  display:none;
+}
