@@ -1,15 +1,4 @@
-function showCongrats()
-{
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementsByTagName("body").innerHTML =
-            this.responseText;
-        }
-    };
-    xhttp.open("GET", "", true);
-    xhttp.send();
-}
+
 
 const cardsArray = [{
     'name': 'shell',
@@ -70,7 +59,7 @@ let firstGuess = '';
 let secondGuess = '';
 let count = 0;
 let previousTarget = null;
-let delay = 1200;
+let delay = 600;
 let nbMatched = 0;
 
 //get the main game div
@@ -154,25 +143,27 @@ let promise = new Promise(function(resolve, reject){
             setTimeout(match, delay);
               nbMatched++;
                   console.log("nbMatched=" + nbMatched );
-
           }
           setTimeout(resetGuesses, delay);
         }
         previousTarget = clicked;
       }
         //all card matched
-        if(nbMatched == 12)
+        if(nbMatched == 1)
         {
            resolve('all matched');
         }
-
     });
-
 });
 
 promise.then(function(){
 
     nbMatched = 0;
+
     console.log("nbMatchedReset=" + nbMatched );
-    showCongrats();
+
+    var gameDiv = document.getElementById("game");
+
+    gameDiv.innerHTML = '<script src="js/congatulations.js"></script> <div class="congrats"> <div id="container" class="col congrats-container p1"></div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1 container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"> </div> <div class="container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"></div> </div> </div> </div> <h1 class="congrats-title">Congratulations !!!</h1> ';
+
 });

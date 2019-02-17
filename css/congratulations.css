@@ -1,7 +1,5 @@
 /*congrats*/
-         .congrats {
-             
-         }
+
          .congrats-container {
          width: 100px;
          float: left;
@@ -162,7 +160,7 @@
          position: absolute;
          left: 0;
          right: 0;
-         top: 20%;
+         top: -20%;
          color: #f76524;
          text-align: center;
          font-size: 10rem;
@@ -174,7 +172,7 @@
          position: absolute;
          left: 0;
          right: 0;
-         top: 1000%;
+         top: 0%;
          color: #f76524;
          text-align: center;
          font-size: 5rem;
@@ -182,8 +180,3 @@
          animation: move-up 2s forwards;
          text-shadow: #ffe45e 0 0 30px, #e5c654 1px 0 10px;
          }
-
-.modal{
-    position: absolute;
-    top: -10%;
-}
