@@ -1,4 +1,4 @@
-function showCongrats();
+function showCongrats()
 {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -123,7 +123,7 @@ const resetGuesses = () => {
 };
 
 let promise = new Promise(function(resolve, reject){
-    
+
     grid.addEventListener('click', function(event) {
 
       const clicked = event.target;
@@ -171,9 +171,8 @@ let promise = new Promise(function(resolve, reject){
 });
 
 promise.then(function(){
-    
+
     nbMatched = 0;
     console.log("nbMatchedReset=" + nbMatched );
     showCongrats();
 });
-
