@@ -29,6 +29,7 @@ body {
 .front {
   height: 150px;
   width: 150px;
+  cursor:pointer;
 }
 
 .back,
@@ -39,7 +40,7 @@ body {
 
 .front {
   z-index: 2;
-  background: #FAB942 url('../img/question.gif') no-repeat center center / contain;
+  background: #FAB942 url('../img/question.jpg') no-repeat center center / contain;
 }
 
 .back {
@@ -55,7 +56,8 @@ body {
 }
 
 .match .front {
-  display:none;
+  visibility: hidden;
+  pointer-events:none;
 }
 .player-title {
 
