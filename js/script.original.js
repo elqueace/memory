@@ -157,6 +157,62 @@ let promise = new Promise(function(resolve, reject){
 
         if (firstGuess && secondGuess && thirdGuess) {
           if (firstGuess == secondGuess && firstGuess  == thirdGuess) {
+            switch(firstGuess)
+            {
+              case "chacal":
+              //play orisa sound
+                document.getElementById("chacal").play();
+                break;
+                case "chopper":
+                //play orisa sound
+                  document.getElementById("chopper").play();
+                  break;
+                  case "faucheur":
+                  //play orisa sound
+                    document.getElementById("faucheur").play();
+                    break;
+                    case "genji":
+                    //play orisa sound
+                      document.getElementById("genji").play();
+                      break;
+                      case "hanzo":
+                      //play orisa sound
+                        document.getElementById("hanzo").play();
+                        break;
+                        case "lucio":
+                        //play orisa sound
+                          document.getElementById("lucio").play();
+                          break;
+                          case "orisa":
+                          //play orisa sound
+                            document.getElementById("orisa").play();
+                            break;
+                            case "pharah":
+                            //play orisa sound
+                              document.getElementById("pharah").play();
+                              break;
+                              case "soldat76":
+                              //play orisa sound
+                                document.getElementById("soldat76").play();
+                                break;
+                                case "tracer":
+                                //play orisa sound
+                                  document.getElementById("tracer").play();
+                                  break;
+                                  case "winston":
+                                  //play orisa sound
+                                    document.getElementById("winston").play();
+                                    break;
+                                    case "zarya":
+                                    //play orisa sound
+                                      document.getElementById("zarya").play();
+                                      break;
+
+                case "hanzo":
+                //play orisa sound
+                  document.getElementById("audioHanzo").play();
+                  break;
+            }
             setTimeout(match, delay);
               nbMatched++;
               //give the match to the playerTurn
@@ -170,7 +226,7 @@ let promise = new Promise(function(resolve, reject){
         previousTarget = clicked;
       }
         //all card matched
-        if(nbMatched == 4)
+        if(nbMatched == 8)
         {
            resolve('all matched');
         }

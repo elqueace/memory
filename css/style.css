@@ -57,6 +57,9 @@ body {
 
 .match .front {
   visibility: hidden;
+}
+.match {
+  visibility: hidden;
   pointer-events:none;
 }
 .player-title {
