@@ -11,12 +11,19 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Styles congratulations -->
   <link href="css/congratulations.css" rel="stylesheet">
-  <script src="js/congratulations.js"></script>
-  <link rel="icon" type="image/png" href="img/mushroom.png">
+  <link rel="icon" type="image/png" href="img/question.jpg">
 
 </head>
 
-<body>
+<body onload="playMainAudio();">
+  <audio id="mainAudio">
+  <source src="sounds/mainAudio.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
+</audio>
+<audio id="audioClick">
+<source src="sounds/click.ogg" type="audio/ogg">
+Your browser does not support the audio element.
+</audio>
   <audio id="chacal">
     <source src="sounds/chacal.ogg" type="audio/ogg">
     Your browser does not support the audio element.
@@ -55,14 +62,6 @@
   </audio>
   <audio id="tracer">
     <source src="sounds/tracer.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
-  </audio>
-  <audio id="winston">
-    <source src="sounds/winston.ogg" type="audio/ogg">
-    Your browser does not support the audio element.
-  </audio>
-  <audio id="zarya">
-    <source src="sounds/zarya.ogg" type="audio/ogg">
     Your browser does not support the audio element.
   </audio>
 

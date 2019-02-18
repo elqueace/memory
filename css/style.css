@@ -5,8 +5,14 @@
 }
 
 body {
-  margin: 20px 0;
-  background: #6589F9;
+  background-image: url('../img/bg.jpg');
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .grid {
@@ -15,6 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  background-color: #fff;
 }
 
 .card {
@@ -45,7 +52,6 @@ body {
 
 .back {
   transform: rotateY(180deg);
-  background-color: #6589F9;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

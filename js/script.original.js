@@ -1,3 +1,6 @@
+function playMainAudio() {
+  document.getElementById("mainAudio").play();
+}
 function Player(){
   this.name ;
   this.points = 0;
@@ -126,8 +129,9 @@ const resetGuesses = () => {
 
 let promise = new Promise(function(resolve, reject){
 
-    grid.addEventListener('click', function(event) {
 
+    grid.addEventListener('click', function(event) {
+document.getElementById("audioClick").play();
       const clicked = event.target;
 
       if (
@@ -201,7 +205,7 @@ let promise = new Promise(function(resolve, reject){
                                   break;
                                   case "winston":
                                   //play orisa sound
-                                    document.getElementById("winston").play();
+                                    //document.getElementById("winston").play();
                                     break;
                                     case "zarya":
                                     //play orisa sound
