@@ -21,7 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  background-color: #fff;
+  background-color: #8db7dd;
 }
 
 .card {

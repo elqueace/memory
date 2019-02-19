@@ -1,5 +1,9 @@
 function playMainAudio() {
-  document.getElementById("mainAudio").play();
+  var mainAudio = document.getElementById("mainAudio");
+  mainAudio.play();
+  mainAudio.volume = 0.1;
+  mainAudio.loop = true;
+
 }
 function Player(){
   this.name ;
