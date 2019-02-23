@@ -1,14 +1,11 @@
-function Player(){
+function Player() {
   this.name ;
   this.points = 0;
 }
 
-let turn = false;
-
+let turn = true;
 let joueur1 = new Player;
 let joueur2 = new Player;
-
-
 
 const cardsArray = [{
     'name': 'shell',
@@ -76,14 +73,12 @@ let nbMatched = 0;
 const game = document.getElementById('game');
 
 //create player turn display
-
 let playeTurn = document.createElement('div');
-let whichPlayer = document.createTextNode(turn ? "Joueur 2" : "Joueur 1");
+let whichPlayer = document.createTextNode(turn ? "Joueur 1" : "Joueur 2");
 playeTurn.appendChild(whichPlayer);
 playeTurn.setAttribute('id','player-title');
 playeTurn.setAttribute('class','player-title');
 game.appendChild(playeTurn);
-
 
 //create the grid, style it and insert in DOM
 const grid = document.createElement('section');
@@ -110,7 +105,6 @@ gameGrid.forEach(item => {
   card.appendChild(back);
 });
 
-
 //add class match for all selected cards
 const match = () => {
   const selected = document.querySelectorAll('.selected');
@@ -132,9 +126,7 @@ const resetGuesses = () => {
 };
 
 let promise = new Promise(function(resolve, reject){
-
     grid.addEventListener('click', function(event) {
-
       const clicked = event.target;
 
       if (
@@ -150,60 +142,228 @@ let promise = new Promise(function(resolve, reject){
         count++;
         if (count === 1) {
           firstGuess = clicked.parentNode.dataset.name;
-          console.log(firstGuess);
+          //console.log(firstGuess);
           clicked.parentNode.classList.add('selected');
         } else {
           secondGuess = clicked.parentNode.dataset.name;
-          console.log(secondGuess);
+          //console.log(secondGuess);
           clicked.parentNode.classList.add('selected');
         }
 
         if (firstGuess && secondGuess) {
           if (firstGuess === secondGuess) {
             setTimeout(match, delay);
-              nbMatched++;
-                  console.log("nbMatched=" + nbMatched );
+            nbMatched++;
+            //console.log("nbMatched=" + nbMatched );
           }
           setTimeout(resetGuesses, delay);
         }
         previousTarget = clicked;
       }
-        //all card matched
-        if(nbMatched == 1)
-        {
-           resolve('all matched');
-        }
 
-        //other player turn
-        document.getElementById('player-title').innerHTML =  turn ? "Joueur 2" : "Joureur 1";
-        turn = turn ? false : true;
+      //all card matched
+      if(nbMatched == 1) {
+         resolve('all matched');
+      }
+
+      //other player turn
+      document.getElementById('player-title').innerHTML =  turn ? "Joueur 1" : "Joureur 2";
+      turn = !turn;
+
     });
 });
 
 promise.then(function(){
-
     nbMatched = 0;
 
-    console.log("nbMatchedReset=" + nbMatched );
-
     var gameDiv = document.getElementById("game");
+    gameDiv.innerHTML = '<div id="congrats"></div><h1 class="congrats-title">Congratulations !!!</h1>';
 
-    gameDiv.innerHTML = '<div id="congrats"> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1 container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"> </div> <div class="container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"></div> </div> </div> </div> <h1 class="congrats-title">Congratulations !!!</h1> ';
+    let congrats;
+    let container;
+    let box;
+    let cracker;
 
-    let congrats = document.getElementById('congrats');
+    congrats = document.getElementById('congrats');
 
-    let container = document.createElement('div');
+    // congrats-container
+    container = document.createElement('div');
     container.setAttribute('id', 'container');
     container.setAttribute('class', 'col congrats-container p1');
     congrats.appendChild(container);
+    // congrats-box
+    box = document.createElement('div');
+    box.setAttribute('class', 'congrats-box m2 d2');
+    container.appendChild(box);
+    // cracker
+    cracker = document.createElement('div');
+    cracker.setAttribute('class', 'cracker solid a1');
+    box.appendChild(cracker);
+    // cracker
+    cracker = document.createElement('div');
+    cracker.setAttribute('class', 'cracker dotted a2');
+    box.appendChild(cracker);
 
-    let congratsBox = document.createElement('div');
-    congratsBox.setAttribute('class', 'congrats-box m2 d2');
-    let cracker1 = document.createElement('div');
-    cracker1.setAttribute('class', 'cracker solid a1');
-    congratsBox.appendChild(cracker1);
-    let cracker2 = document.createElement('div');
-    cracker2.setAttribute('class', 'cracker dotted a2');
-    congratsBox.appendChild(cracker2);
-    congrats.appendChild(congratsBox);
+    for(var i=0; i<3; i++) {
+      // congrats-container 1
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m1');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a3');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a3');
+      box.appendChild(cracker);
+
+      // congrats-container 2
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m1 d1');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a2');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a2');
+      box.appendChild(cracker);
+
+      // congrats-container 3
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m3 d4');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker solid a2');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a3');
+      box.appendChild(cracker);
+
+      // congrats-container P1
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container p1');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m2 d3');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker solid a1');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a2');
+      box.appendChild(cracker);
+
+      // congrats-container P2 1
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container p2');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m1 d1');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a1');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a2');
+      box.appendChild(cracker);
+
+      // congrats-container P2 2
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container p2');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m3 d2');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a4');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a2');
+      box.appendChild(cracker);
+
+      // congrats-container P3 1
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container p3');
+      congrats.appendChild(container);
+      // congrats-box
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m1 d2');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a2');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a3');
+      box.appendChild(cracker);
+
+      // congrats-container P3 2
+      container = document.createElement('div');
+      container.setAttribute('class', 'congrats-container p3');
+      congrats.appendChild(container);
+      // congrats-box 1
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m2 d4');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker solid a2');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker a1');
+      box.appendChild(cracker);
+      // congrats-box 2
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m1 d3');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a3');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a1');
+      box.appendChild(cracker);
+      // congrats-box 3
+      box = document.createElement('div');
+      box.setAttribute('class', 'congrats-box m2 d2');
+      container.appendChild(box);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker solid a1');
+      box.appendChild(cracker);
+      // cracker
+      cracker = document.createElement('div');
+      cracker.setAttribute('class', 'cracker dotted a2');
+      box.appendChild(cracker);
+    }
+
 });
