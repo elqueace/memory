@@ -5,8 +5,14 @@
 }
 
 body {
-  margin: 20px 0;
-  background: #6589F9;
+  background-image: url('../img/bg.jpg');
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .grid {
@@ -15,6 +21,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  background-color: #8db7dd;
 }
 
 .card {
@@ -29,6 +36,7 @@ body {
 .front {
   height: 150px;
   width: 150px;
+  cursor:pointer;
 }
 
 .back,
@@ -39,12 +47,11 @@ body {
 
 .front {
   z-index: 2;
-  background: #FAB942 url('../img/question.gif') no-repeat center center / contain;
+  background: #FAB942 url('../img/question.jpg') no-repeat center center / contain;
 }
 
 .back {
   transform: rotateY(180deg);
-  background-color: #6589F9;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -55,7 +62,11 @@ body {
 }
 
 .match .front {
-  display:none;
+  visibility: hidden;
+}
+.match {
+  visibility: hidden;
+  pointer-events:none;
 }
 .player-title {
 

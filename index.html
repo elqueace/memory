@@ -11,22 +11,73 @@
   <link rel="stylesheet" href="css/style.css">
   <!-- Styles congratulations -->
   <link href="css/congratulations.css" rel="stylesheet">
-  <script src="js/congratulations.js"></script>
-  <link rel="icon" type="image/png" href="img/mushroom.png">
+  <link rel="icon" type="image/png" href="img/question.jpg">
 
 </head>
 
-<body>
-
-<audio id="myMainAudio">
-  <source src="sounds/plants-vs-zombies-music-the-roof-horde.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
+<body onload="playMainAudio();">
+  <audio id="mainAudio">
+  <source src="sounds/mainAudio.mp3" type="audio/mp3">
+  Your browser does not support the audio element.
 </audio>
+<audio id="audioClick">
+<source src="sounds/click.ogg" type="audio/ogg">
+Your browser does not support the audio element.
+</audio>
+  <audio id="chacal">
+    <source src="sounds/chacal.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="chopper">
+    <source src="sounds/chopper.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="faucheur">
+    <source src="sounds/faucheur.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="hanzo">
+    <source src="sounds/hanzo.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="genji">
+    <source src="sounds/genji.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="lucio">
+    <source src="sounds/lucio.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="orisa">
+    <source src="sounds/orisa.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="pharah">
+    <source src="sounds/pharah.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="soldat76">
+    <source src="sounds/soldat76.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
+  <audio id="tracer">
+    <source src="sounds/tracer.ogg" type="audio/ogg">
+    Your browser does not support the audio element.
+  </audio>
 
+    
+    
+
+    
   <div id="game">
 
+    <input id="files" type="file" multiple/>
+    <output id="cardsArray" />
   </div>
-
+    
+    
+    
+    <script src="js/UploadImage.js"></script>
   <script src="js/script.original.js"></script>
 
 </body>

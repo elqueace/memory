@@ -1,72 +1,71 @@
+function playMainAudio() {
+  var mainAudio = document.getElementById("mainAudio");
+  mainAudio.play();
+  mainAudio.volume = 0.1;
+  mainAudio.loop = true;
+
+}
 function Player(){
   this.name ;
   this.points = 0;
 }
 
+let round = 1;
 let turn = false;
 
 let joueur1 = new Player;
 let joueur2 = new Player;
 
+let matchsJoueur1 = 0;
+let matchsJoueur2 = 0;
+
 
 
 const cardsArray = [{
-    'name': 'shell',
-    'img': 'img/blueshell.png',
+    'name': 'chacal',
+    'img': 'img/chacal.png',
   },
   {
-    'name': 'star',
-    'img': 'img/star.png',
+    'name': 'chopper',
+    'img': 'img/chopper.png',
   },
   {
-    'name': 'bobomb',
-    'img': 'img/bobomb.png',
+    'name': 'faucheur',
+    'img': 'img/faucheur.png',
   },
   {
-    'name': 'mario',
-    'img': 'img/mario.png',
+    'name': 'genji',
+    'img': 'img/genji.png',
   },
   {
-    'name': 'luigi',
-    'img': 'img/luigi.png',
+    'name': 'hanzo',
+    'img': 'img/hanzo.png',
   },
   {
-    'name': 'peach',
-    'img': 'img/peach.png',
+    'name': 'lucio',
+    'img': 'img/lucio.png',
   },
   {
-    'name': '1up',
-    'img': 'img/1up.png',
+    'name': 'orisa',
+    'img': 'img/orisa.png',
   },
   {
-    'name': 'mushroom',
-    'img': 'img/mushroom.png',
+    'name': 'pharah',
+    'img': 'img/pharah.png',
   },
-  {
-    'name': 'thwomp',
-    'img': 'img/thwomp.png',
-  },
-  {
-    'name': 'bulletbill',
-    'img': 'img/bulletbill.png',
-  },
-  {
-    'name': 'coin',
-    'img': 'img/coin.png',
-  },
-  {
-    'name': 'goomba',
-    'img': 'img/goomba.png',
-  },
+
 ];
+
+
 
 //shuffle the cards in array
 const gameGrid = cardsArray
-  .concat(cardsArray)
+  .concat(cardsArray).concat(cardsArray)
   .sort(() => 0.5 - Math.random());
 
 let firstGuess = '';
 let secondGuess = '';
+let thirdGuess = '';
 let count = 0;
 let previousTarget = null;
 let delay = 600;
@@ -77,12 +76,12 @@ const game = document.getElementById('game');
 
 //create player turn display
 
-let playeTurn = document.createElement('div');
+let playerTurn = document.createElement('div');
 let whichPlayer = document.createTextNode(turn ? "Joueur 2" : "Joueur 1");
-playeTurn.appendChild(whichPlayer);
-playeTurn.setAttribute('id','player-title');
-playeTurn.setAttribute('class','player-title');
-game.appendChild(playeTurn);
+playerTurn.appendChild(whichPlayer);
+playerTurn.setAttribute('id','player-title');
+playerTurn.setAttribute('class','player-title');
+game.appendChild(playerTurn);
 
 
 //create the grid, style it and insert in DOM
@@ -122,6 +121,7 @@ const match = () => {
 const resetGuesses = () => {
   firstGuess = '';
   secondGuess = '';
+  thirdGuess = '';
   count = 0;
   previousTarget = null;
 
@@ -133,8 +133,9 @@ const resetGuesses = () => {
 
 let promise = new Promise(function(resolve, reject){
 
-    grid.addEventListener('click', function(event) {
 
+    grid.addEventListener('click', function(event) {
+document.getElementById("audioClick").play();
       const clicked = event.target;
 
       if (
@@ -146,36 +147,100 @@ let promise = new Promise(function(resolve, reject){
         return;
       }
 
-      if (count < 2) {
+      if (count < 3) {
         count++;
         if (count === 1) {
           firstGuess = clicked.parentNode.dataset.name;
           console.log(firstGuess);
           clicked.parentNode.classList.add('selected');
-        } else {
+        } else if (count === 2) {
           secondGuess = clicked.parentNode.dataset.name;
           console.log(secondGuess);
           clicked.parentNode.classList.add('selected');
+        }else if (count === 3){
+          thirdGuess = clicked.parentNode.dataset.name;
+          console.log(thirdGuess);
+          clicked.parentNode.classList.add('selected');
         }
 
-        if (firstGuess && secondGuess) {
-          if (firstGuess === secondGuess) {
+        if (firstGuess && secondGuess && thirdGuess) {
+          if (firstGuess == secondGuess && firstGuess  == thirdGuess) {
+            switch(firstGuess)
+            {
+              case "chacal":
+              //play orisa sound
+                document.getElementById("chacal").play();
+                break;
+                case "chopper":
+                //play orisa sound
+                  document.getElementById("chopper").play();
+                  break;
+                  case "faucheur":
+                  //play orisa sound
+                    document.getElementById("faucheur").play();
+                    break;
+                    case "genji":
+                    //play orisa sound
+                      document.getElementById("genji").play();
+                      break;
+                      case "hanzo":
+                      //play orisa sound
+                        document.getElementById("hanzo").play();
+                        break;
+                        case "lucio":
+                        //play orisa sound
+                          document.getElementById("lucio").play();
+                          break;
+                          case "orisa":
+                          //play orisa sound
+                            document.getElementById("orisa").play();
+                            break;
+                            case "pharah":
+                            //play orisa sound
+                              document.getElementById("pharah").play();
+                              break;
+                              case "soldat76":
+                              //play orisa sound
+                                document.getElementById("soldat76").play();
+                                break;
+                                case "tracer":
+                                //play orisa sound
+                                  document.getElementById("tracer").play();
+                                  break;
+                                  case "winston":
+                                  //play orisa sound
+                                    //document.getElementById("winston").play();
+                                    break;
+                                    case "zarya":
+                                    //play orisa sound
+                                      document.getElementById("zarya").play();
+                                      break;
+
+                case "hanzo":
+                //play orisa sound
+                  document.getElementById("audioHanzo").play();
+                  break;
+            }
             setTimeout(match, delay);
               nbMatched++;
-                  console.log("nbMatched=" + nbMatched );
+              //give the match to the playerTurn
+              turn ? matchsJoueur2++ : matchsJoueur1++;
+              console.log("mj1=" + matchsJoueur1 );
+              console.log("mj2=" + matchsJoueur2 );
+              console.log("nbMatched=" + nbMatched );
           }
           setTimeout(resetGuesses, delay);
         }
         previousTarget = clicked;
       }
         //all card matched
-        if(nbMatched == 1)
+        if(nbMatched == 8)
         {
            resolve('all matched');
         }
 
         //other player turn
-        document.getElementById('player-title').innerHTML =  turn ? "Joueur 2" : "Joureur 1";
+        document.getElementById('player-title').innerHTML =  turn ? "Joueur 1" : "Joueur 2";
         turn = turn ? false : true;
     });
 });
@@ -188,22 +253,11 @@ promise.then(function(){
 
     var gameDiv = document.getElementById("game");
 
-    gameDiv.innerHTML = '<div id="congrats"> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1 container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"> </div> <div class="container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"></div> </div> </div> </div> <h1 class="congrats-title">Congratulations !!!</h1> ';
+    gameDiv.innerHTML = '<div id="congrats" class="congrats"> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1 container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"> </div> <div class="container p1"></div> </div> <div class="congrats-box m2 d2"> <div class="cracker solid a1"> </div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1"> <div class="cracker a3"></div> <div class="cracker dotted a3"> </div> </div> </div> <div class="congrats-container"> <div class="congrats-box m1 d1"> <div class="cracker a2"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container"> <div class="congrats-box m3 d4"> <div class="cracker solid a2"></div> <div class="cracker dotted a3"></div> </div> </div> <div class="congrats-container p1"> <div class="congrats-box m2 d3"> <div class="cracker solid a1"></div> <div class="cracker dotted a2"></div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m1 d1"> <div class="cracker a1"></div> <div class="cracker dotted a2"> </div> </div> </div> <div class="congrats-container p2"> <div class="congrats-box m3 d2"> <div class="cracker dotted a4"></div> <div class="cracker a2"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m1 d2"> <div class="cracker a2"></div> <div class="cracker a3"></div> </div> </div> <div class="congrats-container p3"> <div class="congrats-box m2 d4"> <div class="cracker solid a2"></div> <div class="cracker a1"></div> </div> <div class="congrats-box m1 d3"> <div class="cracker dotted a3"></div> <div class="cracker dotted a1"></div> </div> </div> </div> <h1 class="congrats-title">Congratulations !!!</h1> ';
 
-    let congrats = document.getElementById('congrats');
-
-    let container = document.createElement('div');
-    container.setAttribute('id', 'container');
-    container.setAttribute('class', 'col congrats-container p1');
+    let container = document.createElement("div");
+    container.setAttribute("id", "container");
+    container.setAttribute("class", "col congrats-container p1");
+    let congrats = document.getElementById("congrats");
     congrats.appendChild(container);
-
-    let congratsBox = document.createElement('div');
-    congratsBox.setAttribute('class', 'congrats-box m2 d2');
-    let cracker1 = document.createElement('div');
-    cracker1.setAttribute('class', 'cracker solid a1');
-    congratsBox.appendChild(cracker1);
-    let cracker2 = document.createElement('div');
-    cracker2.setAttribute('class', 'cracker dotted a2');
-    congratsBox.appendChild(cracker2);
-    congrats.appendChild(congratsBox);
 });
